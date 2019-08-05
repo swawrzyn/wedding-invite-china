@@ -1,54 +1,64 @@
-//index.js
-//获取应用实例
-const app = getApp()
-
+const order = ['one', 'two', 'three'];
 Page({
   data: {
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
-  },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
+    barHeight: 0,
+    initTouch: 0,
+    currentPage: 0,
+    windowHeight: 0,
+    containerHeight: 0,
+    toSect: 'one',
+    isScroll: false,
+    initalLoad: false,
   },
   onLoad: function () {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
+    const sysInfo = wx.getSystemInfoSync();
+    const self = this;
+    setTimeout(function(){
+      self.setData({
+        initalLoad: true,
       })
-    } else if (this.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
+    }, 2000);
+
+    this.setData({
+      barHeight: sysInfo.statusBarHeight,
+      windowHeight: sysInfo.windowHeight,
+      containerHeight: sysInfo.windowHeight,
+    });
+  },
+
+  setInitPos: function (e) {
+    this.setData({
+      initTouch: e.touches[0].pageY,
+    })
+  },
+
+  scrollTo: function (e) {
+    const wiggleRoom = Math.abs(this.data.initTouch - e.changedTouches[0].pageY) > 20;
+    const currentPage = this.data.currentPage;
+    console.log(currentPage)
+    this.setData({
+      isScroll: true,
+    })
+    if (wiggleRoom && this.data.initTouch > e.changedTouches[0].pageY) {
+      if (currentPage >= 0 && currentPage < 2) {
         this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
+          isScroll: true,
+          currentPage: currentPage + 1,
+          toSect: order[currentPage + 1],
+        });
+      }
+    } else if (wiggleRoom && this.data.initTouch < e.changedTouches[0].pageY) {
+      if (currentPage > 0 && currentPage <= 2) {
+        this.setData({
+          currentPage: currentPage - 1,
+          toSect: order[currentPage - 1],
+          isScroll: true,
+        });
       }
     } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
     }
-  },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
     this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-  }
+      isScroll: false,
+    });
+  },
 })

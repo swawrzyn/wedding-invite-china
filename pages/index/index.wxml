@@ -1,13 +1,33 @@
-<!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+<view class="page">
+  <view class="nav" style="height: {{barHeight}}px"></view>
+  <scroll-view class="container" scroll-with-animation scroll-y="{{isScroll}}" enable-flex="true" ontouchstart="setInitPos" ontouchend="scrollTo" style="height: {{containerHeight}}px" scroll-into-view="{{toSect}}">
+    <view id="one" class="sect one" style="height: {{containerHeight}}px">
+      <view class="video-container">
+        <video src="1.mp4" autoplay loop
+        controls="{{false}}"  ></video>
+      <view class="one-content {{initalLoad ? 'loaded': ''}}">
+        <view class="top-text">together with their families</view>
+        <view class="main-names">
+          <view class="rui">Rui</view>
+          <view class="and">&</view>
+          <view class="stefan">Stefan</view>
+        </view>
+        <view class="name-subtitle">joyfully invite you to their wedding dinner</view>
+        <view class="datetime-location-block">
+          <view class="date">Saturday, September 28th, 2019</view>
+          <view class="time">6 o'clock in the evening</view>
+          <view class="location-name">The Riveira Restaurant</view>
+          <view class="address">123 Waitan St, Shanghai</view>
+        </view>
+        
+      </view>
+      </view>
+    </view>
+    <view id="two" class="sect two" style="height: {{containerHeight}}px">
+      Section 2
+    </view>
+    <view id="three" class="sect three" style="height: {{containerHeight}}px">
+      Section 3
+    </view>
+  </scroll-view>
 </view>
