@@ -1,7 +1,7 @@
 .page {
   overflow: hidden;
   position: relative;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Custom EN', serif;
   
 }
 .container {
@@ -23,6 +23,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  position: relative;
 }
 
 .one {
@@ -41,12 +42,12 @@
 }
 
 .two {
-  background: black;
+  background-size: cover;
   color: white;
 }
 
 .three {
-  background: red;
+  background-size: cover;
   color: white;
 }
 
@@ -72,7 +73,7 @@ svg {
   transform: translate(-50%, -50%);
 }
 
-.video-container .one-content {
+.content {
   position: absolute;
   display: flex;
   align-items: center;
@@ -88,27 +89,27 @@ svg {
   border-radius: 8rpx;
   color: rgba(0, 0, 0, 0.8);
   z-index: 10;
-  opacity: 0;
+  opacity: 1;
   border: 1rpx solid rgba(0, 0, 0, 0.8);
   background: white;
   box-shadow: 5px 0px 30px 1px rgba(218, 218, 218, 0.6);
 }
 
-.one-content .top-text {
+.content .top-text {
   font-size: 32rpx;
   font-style: italic;
   margin: 10rpx;
   font-weight: bold;
 }
 
-.one-content .name-subtitle {
+.content .name-subtitle {
   font-size: 32rpx;
   font-style: italic;
   margin: 10rpx;
   font-weight: bold;
 }
 
-.one-content .main-names {
+.content .main-names {
   font-size: 102rpx;
   display: flex;
   align-items: center;
@@ -122,7 +123,7 @@ svg {
   font-size: 52rpx;
 }
 
-.one-content .datetime-location-block {
+.content .datetime-location-block {
   text-transform: uppercase;
   font-size: 32rpx;
   display: flex;
@@ -133,12 +134,44 @@ svg {
   margin-top: 56rpx;
 }
 
-.one-content .datetime-location-block view {
+.content .datetime-location-block view {
   margin-top: 8rpx;
 }
 
-.video-container .one-content.loaded {
+.video-container .content.loading {
+  opacity: 0;
+}
+
+.video-container .content.loaded {
   opacity: 1;
   transition: opacity 1s ease-in;
 }
+
+.para {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10rpx;
+  margin-bottom: 10rpx;
+}
+
+.para .title {
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 2rpx;
+}
+
+.para text {
+  padding: 10rpx;
+  text-align: center;
+}
+
+.para .map {
+  margin-top: 20rpx;
+  width: 400rpx;
+  height: 400rpx;
+  border: 2rpx solid rgba(0, 0, 0, 0.25);
+}
+
 

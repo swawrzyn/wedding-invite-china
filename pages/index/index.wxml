@@ -2,32 +2,44 @@
   <view class="nav" style="height: {{barHeight}}px"></view>
   <scroll-view class="container" scroll-with-animation scroll-y="{{isScroll}}" enable-flex="true" ontouchstart="setInitPos" ontouchend="scrollTo" style="height: {{containerHeight}}px" scroll-into-view="{{toSect}}">
     <view id="one" class="sect one" style="height: {{containerHeight}}px">
-      <view class="video-container">
-        <video src="1.mp4" autoplay loop
-        controls="{{false}}"  ></video>
-      <view class="one-content {{initalLoad ? 'loaded': ''}}">
-        <view class="top-text">together with their families</view>
+    <view class="video-container">
+      <video src="" autoplay loop
+      controls="{{false}}"  ></video>
+      <view class="content {{initalLoad ? 'loaded': 'loading'}}">
+        <view class="top-text">{{currentLanguage.topText}}</view>
         <view class="main-names">
-          <view class="rui">Rui</view>
-          <view class="and">&</view>
-          <view class="stefan">Stefan</view>
+          <view class="rui">{{currentLanguage.rui}}</view>
+          <view class="and">{{currentLanguage.and}}</view>
+          <view class="stefan">{{currentLanguage.stefan}}</view>
         </view>
-        <view class="name-subtitle">joyfully invite you to their wedding dinner</view>
+        <view class="name-subtitle">{{currentLanguage.nameSubtitle}}</view>
         <view class="datetime-location-block">
-          <view class="date">Saturday, September 28th, 2019</view>
-          <view class="time">6 o'clock in the evening</view>
-          <view class="location-name">The Riveira Restaurant</view>
-          <view class="address">123 Waitan St, Shanghai</view>
+          <view class="date">{{currentLanguage.date}}</view>
+          <view class="time">{{currentLanguage.time}}</view>
+          <view class="location-name">{{currentLanguage.locationName}}</view>
+          <view class="address">{{currentLanguage.address}}</view>
         </view>
-        
-      </view>
       </view>
     </view>
-    <view id="two" class="sect two" style="height: {{containerHeight}}px">
-      Section 2
     </view>
-    <view id="three" class="sect three" style="height: {{containerHeight}}px">
-      Section 3
+    <view id="two" class="sect two" style="height: {{containerHeight}}px; background-image: url(img/8.jpg)">
+      <view class="content">
+        <view class="para">
+          <view class="title">{{currentLanguage.detailsTitle}}</view>
+            <text>{{currentLanguage.detailsPara}}</text>
+        </view>
+        <view class="para">
+          <view class="title">{{currentLanguage.directions}}</view>
+          <image class="map" src="img/map.jpg" bindtap="toMap" />
+        </view>
+      </view>
+    </view>
+    <view id="three" class="sect three" style="height: {{containerHeight}}px; background-image: url(img/11.jpg)">
+      <view class="content">
+        <view class="rsvp-title">
+          RSVP
+        </view>
+      </view>
     </view>
   </scroll-view>
 </view>

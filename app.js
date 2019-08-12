@@ -1,11 +1,13 @@
 //app.js
 App({
   onLaunch: function () {
-    wx.loadFontFace({
-      family: 'Bitstream Vera Serif Bold',
-      source: 'url("https://fonts.gstatic.com/s/nanummyeongjo/v15/9Btx3DZF0dXLMZlywRbVRNhxy1LuEGI-gZ_Ll9dMHVruCTvHYAnNT2g.0.woff2")',
-      success: console.log
-    })
+    wx.BaaS = requirePlugin('sdkPlugin');
+    //让插件帮助完成登录、支付等功能
+    wx.BaaS.wxExtend(wx.login,
+      wx.getUserInfo,
+      wx.requestPayment)
+
+    wx.BaaS.init('4a2a0112bcf7cefccb94');
   },
   globalData: {
     userInfo: null
