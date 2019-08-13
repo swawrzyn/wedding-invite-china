@@ -18,6 +18,34 @@
   z-index: 5;
 }
 
+.lang {
+  position: absolute;
+  left: 40rpx;
+  z-index: 5;
+  height: 90rpx;
+  width: 90rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lang .button {
+  background: rgba(0, 0, 0, 0.25);
+  color: white;
+  border-radius: 5rpx;
+  height: 66%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lang .button:active {
+  background: rgba(255, 255, 255, 0.25);
+  color: black;
+  transition: background, color 0.25s ease-out;
+}
+
 .sect {
   display: flex;
   align-items: center;
@@ -96,17 +124,19 @@ svg {
 }
 
 .content .top-text {
-  font-size: 32rpx;
+  font-size: 28rpx;
   font-style: italic;
   margin: 10rpx;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 .content .name-subtitle {
-  font-size: 32rpx;
+  font-size: 28rpx;
   font-style: italic;
   margin: 10rpx;
-  font-weight: bold;
+  /* font-weight: bold; */
+  padding: 10rpx;
+  text-align: center;
 }
 
 .content .main-names {
@@ -115,34 +145,41 @@ svg {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  text-transform: uppercase;
-  font-weight: bold;
+  /* text-transform: uppercase;
+  font-weight: bold; */
 }
 
 .main-names .and {
-  font-size: 52rpx;
+  font-size: 64rpx;
+}
+
+.divider {
+  height: 1rpx;
+  width: 90%;
+  margin: 30rpx;
+  border: 1rpx solid rgba(0, 0, 0, 0.1);
+  border-radius: 5rpx;
 }
 
 .content .datetime-location-block {
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   font-size: 32rpx;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   /* font-weight: lighter; */
-  margin-top: 56rpx;
 }
 
 .content .datetime-location-block view {
   margin-top: 8rpx;
 }
 
-.video-container .content.loading {
+.loading {
   opacity: 0;
 }
 
-.video-container .content.loaded {
+.loaded {
   opacity: 1;
   transition: opacity 1s ease-in;
 }
@@ -174,4 +211,146 @@ svg {
   border: 2rpx solid rgba(0, 0, 0, 0.25);
 }
 
+.content.rsvp {
+  justify-content: space-around;
+}
 
+.content.rsvp .rsvp-title-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.content.rsvp .rsvp-title-group .rsvp-title {
+  font-size: 56rpx;
+  margin-bottom: 10rpx;
+}
+
+.content.rsvp .form-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.content.rsvp .text-input-group {
+  width: 100%;
+}
+
+.content.rsvp .text-input-group .text-input {
+  border: 1rpx solid rgba(0, 0, 0, 0.08);
+  background: rgba(0, 0, 0, 0.05);
+  padding: 10rpx;
+  border-radius: 5rpx;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.content.rsvp .text-input-group .text-input .input-placeholder {
+  font-family: 'Custom EN', serif;
+}
+
+.content.rsvp .form-block .form-item {
+  margin-top: 25rpx;
+  width: 100%;
+  transition: opacity 0.5s ease-out;
+}
+
+.content.rsvp .form-block .form-item.text-input {
+  width: 95%;
+  margin: 0;
+  transition: opacity 0.5s ease-out;
+}
+
+.content.rsvp .form-block .radio-title {
+  margin-bottom: 10rpx;
+  transition: opacity 0.5s ease-out;
+}
+
+.content.rsvp .form-block .form-item .radio-item {
+  padding: 10rpx;
+} 
+
+.content.rsvp .submit-button {
+  width: 50%;
+  background: #abccc1;
+  color: white;
+}
+
+.content.rsvp .submit-button:active {
+  background: #8ba59c;
+}
+.hidden {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+
+.form-error {
+  margin: 0;
+  /* margin-bottom: 10rpx; */
+  padding: 0;
+  font-size: 24rpx;
+  color: red;
+}
+
+.rsvp-sent {
+  
+  text-align: center;
+  padding: 25rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.rsvp-sent text {
+  padding: 10rpx;
+}
+
+.rsvp-sent .title {
+  font-size: 56rpx;
+  margin-bottom: 50rpx;
+}
+
+.rsvp-sent .text {
+  font-size: 36rpx;
+}
+
+.rsvp-sent .subtitle {
+  margin-top: 50rpx;
+  font-size: 36rpx;
+}
+
+.arrow {
+  position: absolute;
+  z-index: 50;
+  bottom: 10rpx;
+  left: 50%;
+  margin-left: -40rpx;
+  transform: translateX(-50%);
+}
+
+.arrow image {
+  width: 80rpx;
+  height: 80rpx;
+}
+.bounce {
+  -moz-animation: bounce 3s infinite;
+  -webkit-animation: bounce 3s infinite;
+  animation: bounce 3s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}

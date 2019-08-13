@@ -1,11 +1,14 @@
 <view class="page">
   <view class="nav" style="height: {{barHeight}}px"></view>
+  <view class="lang" style="margin-top: {{barHeight}}px">
+    <view class="button" bindtap="changeLang">{{oppositeLang}}</view>
+  </view>
   <scroll-view class="container" scroll-with-animation scroll-y="{{isScroll}}" enable-flex="true" ontouchstart="setInitPos" ontouchend="scrollTo" style="height: {{containerHeight}}px" scroll-into-view="{{toSect}}">
     <view id="one" class="sect one" style="height: {{containerHeight}}px">
     <view class="video-container">
-      <video src="" autoplay loop
-      controls="{{false}}"  ></video>
-      <view class="content {{initalLoad ? 'loaded': 'loading'}}">
+      <video src="https://cloud-minapp-29654.cloud.ifanrusercontent.com/1hxBHxSae1L8ei7X.mp4" autoplay loop
+      controls="{{false}}"></video>
+      <view class="content {{initialLoad ? 'loaded': 'loading'}}">
         <view class="top-text">{{currentLanguage.topText}}</view>
         <view class="main-names">
           <view class="rui">{{currentLanguage.rui}}</view>
@@ -13,16 +16,22 @@
           <view class="stefan">{{currentLanguage.stefan}}</view>
         </view>
         <view class="name-subtitle">{{currentLanguage.nameSubtitle}}</view>
+        <view class="divider"></view>
         <view class="datetime-location-block">
           <view class="date">{{currentLanguage.date}}</view>
           <view class="time">{{currentLanguage.time}}</view>
           <view class="location-name">{{currentLanguage.locationName}}</view>
-          <view class="address">{{currentLanguage.address}}</view>
+          <view class="address">{{currentLanguage.address1}}</view>
+          <view class="address">{{currentLanguage.address2}}</view>
         </view>
       </view>
+      <view class="arrow bounce {{initialLoad ? 'loaded': 'loading'}}" bindtap="nextSect">
+        <image src="img/arrow-light.png" />
+      </view>
     </view>
+    
     </view>
-    <view id="two" class="sect two" style="height: {{containerHeight}}px; background-image: url(img/8.jpg)">
+    <view id="two" class="sect two" style="height: {{containerHeight}}px; background-image: url('https://cloud-minapp-29654.cloud.ifanrusercontent.com/9.jpg')">
       <view class="content">
         <view class="para">
           <view class="title">{{currentLanguage.detailsTitle}}</view>
@@ -33,13 +42,57 @@
           <image class="map" src="img/map.jpg" bindtap="toMap" />
         </view>
       </view>
-    </view>
-    <view id="three" class="sect three" style="height: {{containerHeight}}px; background-image: url(img/11.jpg)">
-      <view class="content">
-        <view class="rsvp-title">
-          RSVP
-        </view>
+      <view class="arrow bounce {{initialLoad ? 'loaded' : 'loading'}}" bindtap="nextSect">
+        <image src="img/arrow-dark.png" />
       </view>
+    </view>
+    <view id="three" class="sect three" style="height: {{containerHeight}}px; background-image: url(https://cloud-minapp-29654.cloud.ifanrusercontent.com/3.jpg)">
+      <block wx:if="{{!sentRSVP}}">
+        <view wx:if="!sentRSVP" class="content rsvp">
+          <view class="rsvp-title-group">
+            <view class="rsvp-title">{{currentLanguage.rsvpTitle}}</view>
+            <view class="rsvp-subtitle">{{currentLanguage.rsvpSubtitle}}</view>
+          </view>
+          <view class="form-block">
+            <view class="text-input-group">
+              <input class="text-input form-item" type="text" placeholder="{{currentLanguage.rsvpYourName}}" data-input="mainName" bindinput="bindInput" />
+              <view class="form-error {{mainNameError ? '' : 'hidden'}}">{{currentLanguage.mainNameError}}</view>
+            </view>
+            
+            <radio-group class="radio-group form-item" bindchange="radioChange">
+              <view class="radio-title">{{currentLanguage.rsvpQuestion}}</view>
+              <label class="radio">
+                <radio class="radio-item" value="yes-attend"/>{{currentLanguage.rsvpYes}}
+                <radio class="radio-item" value="no-attend"/>{{currentLanguage.rsvpNo}}
+              </label>
+              <view class="form-error {{attendingError ? '' : 'hidden'}}">{{currentLanguage.radioError}}</view>
+            </radio-group>
+            <radio-group class="radio-group form-item {{attending ? '' : 'hidden'}}" bindchange="radioChange">
+              <view class="radio-title">{{currentLanguage.rsvpGuestRadio}}</view>
+              <label class="radio">
+                <radio class="radio-item" value="yes-guest"/>{{currentLanguage.rsvpYes}}
+                <radio class="radio-item" value="no-guest"/>{{currentLanguage.rsvpNo}}
+              </label>
+              <view class="form-error {{guestChoiceError ? '' : 'hidden'}}">{{currentLanguage.radioError}}</view>
+            </radio-group>
+            <view class="text-input-group">
+              <input class="text-input form-item {{guest && attending ? '' : 'hidden'}}" type="text" placeholder="{{currentLanguage.rsvpGuestName}}" data-input="guestName" bindinput="bindInput" />
+              <view class="form-error {{guestNameError ? '' : 'hidden'}}">{{currentLanguage.guestNameError}}</view>
+            </view>
+          </view>
+          <!-- disabled="{{mainName === '' || attending === null || (guest === null || (guest && guestName === ''))}}" -->
+          <button class="submit-button" bindtap="submitRSVP">{{currentLanguage.rsvpSubmit}}</button>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="content rsvp">
+          <view class="rsvp-sent">
+            <text class="title">{{currentLanguage.rsvpSent1}}</text>
+            <text class="text">{{currentLanguage.rsvpSent2}}</text>
+            <text class="subtitle">{{currentLanguage.rsvpSent3}}</text>
+            </view>
+        </view>
+      </block>
     </view>
   </scroll-view>
 </view>
