@@ -329,7 +329,9 @@ Page({
         });
         wx.hideLoading();
       }, (err) => {
-
+        this.setData({
+          serverError: true,
+        });
         wx.hideLoading({
           complete() {
             wx.showToast({
