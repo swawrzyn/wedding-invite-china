@@ -367,6 +367,20 @@ svg {
   font-size: 36rpx;
 }
 
+.call-buttons {
+  width: 100%;
+  margin-top: 50rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.call-buttons .submit-button {
+  margin: 10rpx 0;
+  width: 100%;
+}
+
 .arrow {
   position: absolute;
   z-index: 50;

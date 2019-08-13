@@ -10,27 +10,28 @@ App({
     wx.BaaS.init('4a2a0112bcf7cefccb94');
 
     wx.BaaS.auth.loginWithWechat().then(user => {
-      console.log('user', user.id);
       let query = new wx.BaaS.Query();
       query.compare('created_by', '=', user.id);
       let Rsvp = new wx.BaaS.TableObject('rsvp');
       Rsvp.setQuery(query).find().then(res => {
-        console.log('res', res.data.objects);
         if (res.data.objects.length > 0) {
           this.globalData.sentRSVP = true;
         } else {
           this.globalData.sentRSVP = false;
         }
       }, err => {
-        // err
+        this.globalData.sentRSVP = false;
+        this.globalData.error = true;
       })
     }, err => {
-      // 登录失败
+      this.globalData.sentRSVP = false;
+      this.globalData.error = true;
     })
   },
   
   globalData: {
     userInfo: null,
     sentRSVP: null,
+    error: false,
   }
 })

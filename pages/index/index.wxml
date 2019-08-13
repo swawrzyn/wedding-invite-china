@@ -51,7 +51,20 @@
       </view>
     </view>
     <view id="three" class="sect three" style="height: {{containerHeight}}px; background-image: url(https://cloud-minapp-29654.cloud.ifanrusercontent.com/3.jpg)">
-      <block wx:if="{{!sentRSVP}}">
+      <block wx:if="{{serverError}}">
+        <view class="content rsvp {{toSect === 'three' ? 'appear' : 'disappear'}}">
+          <view class="rsvp-sent">
+            <!-- <text class="title">{{currentLanguage.serverError}}</text> -->
+            <text class="text">{{currentLanguage.errorText1}}</text>
+            <text class="subtitle">{{currentLanguage.errorText2}}</text>
+            <view class="call-buttons">
+              <button class="submit-button" bindtap="callRui">{{currentLanguage.callRui}}</button>
+              <button class="submit-button" bindtap="callStefan">{{currentLanguage.callStefan}}</button>
+            </view>
+          </view>
+        </view>
+      </block>
+      <block wx:elif="{{!sentRSVP}}">
         <view wx:if="!sentRSVP" class="content rsvp {{toSect === 'three' ? 'appear' : 'disappear'}}">
           <view class="rsvp-title-group">
             <view class="rsvp-title">{{currentLanguage.rsvpTitle}}</view>

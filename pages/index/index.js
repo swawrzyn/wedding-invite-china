@@ -32,6 +32,10 @@ const texts = {
     rsvpSent1: 'Congrats!',
     rsvpSent2: 'Your RSVP has been sent successfully!',
     rsvpSent3: 'See you soon!',
+    errorText1: "We're sorry, there was a server error.",
+    errorText2: "Please call to give your RSVP or try again later.",
+    callRui: 'Call Rui',
+    callStefan: 'Call Stefan',
   },
   zh: {
     topText: 'together with their families',
@@ -63,6 +67,10 @@ const texts = {
     rsvpSent1: 'Congrats!',
     rsvpSent2: 'Your RSVP has been sent successfully!',
     rsvpSent3: 'See you soon!',
+    errorText1: "We're sorry, there was a server error.",
+    errorText2: "Please call to give your RSVP or try again later.",
+    callRui: 'Call Rui',
+    callStefan: 'Call Stefan',
   }
 }
 
@@ -91,6 +99,7 @@ Page({
     sentRSVP: false,
     enLoaded: false,
     zhLoaded: false,
+    serverError: false,
   },
   onLoad: function () {
     const self = this;
@@ -121,25 +130,12 @@ Page({
           self.setData({
             initialLoad: true,
             sentRSVP: app.globalData.sentRSVP,
+            serverError: app.globalData.error,
           });
           clearInterval(timerId);
         }, 2000);
       }
-    }, 2000)
-
-    while(true) {
-      if (app.globalData.sentRSVP != null && this.data.enLoaded && this.data.zhLoaded) {
-        setTimeout(function(){
-          self.setData({
-            initialLoad: true,
-            sentRSVP: app.globalData.sentRSVP,
-          })
-        }, 5000);
-      } else {
-
-      }
-      break;
-    }
+    }, 2000);
 
     if (sysInfo.language === 'en') {
       this.setData({
@@ -328,12 +324,12 @@ Page({
       newRSVP.set(payload);
 
       newRSVP.save().then((res) => {
-        console.log('create res', res);
         this.setData({
           sentRSVP: true,
         });
         wx.hideLoading();
       }, (err) => {
+
         wx.hideLoading({
           complete() {
             wx.showToast({
@@ -344,5 +340,15 @@ Page({
         })
       });
     }
+  },
+  callRui: function() {
+    wx.makePhoneCall({
+      phoneNumber: '18616286042',
+    })
+  },
+  callStefan: function() {
+    wx.makePhoneCall({
+      phoneNumber: '18616286042',
+    })
   },
 })
