@@ -31,7 +31,7 @@
     </view>
     
     </view>
-    <view id="two" class="sect two" style="height: {{containerHeight}}px; background-image: url('https://cloud-minapp-29654.cloud.ifanrusercontent.com/1hxSN5oINjcOspNo.jpg')">
+    <view id="two" class="sect two" style="height: {{containerHeight}}px; background-image: url('https://cloud-minapp-29654.cloud.ifanrusercontent.com/3.jpg')">
       <view class="content {{toSect === 'two' ? 'appear' : 'disappear'}}">
         <view class="para">
           <view class="title">{{currentLanguage.detailsTitle}}</view>
@@ -43,6 +43,7 @@
             <view class="overlay"></view>
             <image src="img/map.jpg" />
           </view>
+          <view style="font-size: 24rpx; margin-top: 10rpx;">{{currentLanguage.clickMap}}</view>
           
         </view>
       </view>
@@ -50,7 +51,7 @@
         <image src="img/arrow-dark.png" />
       </view>
     </view>
-    <view id="three" class="sect three" style="height: {{containerHeight}}px; background-image: url(https://cloud-minapp-29654.cloud.ifanrusercontent.com/3.jpg)">
+    <view id="three" class="sect three" style="height: {{containerHeight}}px; background-image: url('https://cloud-minapp-29654.cloud.ifanrusercontent.com/1hxXSx4J42OxgPZE.jpg')">
       <block wx:if="{{serverError}}">
         <view class="content rsvp {{toSect === 'three' ? 'appear' : 'disappear'}}">
           <view class="rsvp-sent">

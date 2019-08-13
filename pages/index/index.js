@@ -36,6 +36,7 @@ const texts = {
     errorText2: "Please call to give your RSVP or try again later.",
     callRui: 'Call Rui',
     callStefan: 'Call Stefan',
+    clickMap: 'Click map for directions',
   },
   zh: {
     topText: 'together with their families',
@@ -71,6 +72,7 @@ const texts = {
     errorText2: "Please call to give your RSVP or try again later.",
     callRui: 'Call Rui',
     callStefan: 'Call Stefan',
+    clickMap: 'Click map for directions',
   }
 }
 
