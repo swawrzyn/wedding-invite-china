@@ -35,7 +35,7 @@ const texts = {
   },
   zh: {
     topText: 'together with their families',
-    rui: 'Rui',
+    rui: '李锐',
     and: '&',
     stefan: 'Stefan',
     nameSubtitle: 'joyfully invite you to their wedding dinner',
@@ -73,7 +73,7 @@ Page({
     currentPage: 0,
     windowHeight: 0,
     containerHeight: 0,
-    toSect: 'three',
+    toSect: 'one',
     isScroll: false,
     initialLoad: false,
     currentLanguage: texts.zh,
@@ -89,21 +89,57 @@ Page({
     guestNameError: false,
     submitLoading: false,
     sentRSVP: false,
+    enLoaded: false,
+    zhLoaded: false,
   },
   onLoad: function () {
+    const self = this;
     wx.loadFontFace({
       family: 'Custom EN',
       source: 'url("https://cloud-minapp-29654.cloud.ifanrusercontent.com/1hxBVd1wG2mv9lc6.ttf")',
-      complete: console.log
+      complete() {
+        self.setData({
+          enLoaded: true,
+        });
+      }
+    })
+    wx.loadFontFace({
+      family: 'Custom ZH',
+      source: 'url("https://cloud-minapp-29654.cloud.ifanrusercontent.com/1hxSYaIgdn7yWKDq.ttf")',
+      complete() {
+        self.setData({
+          zhLoaded: true,
+        });
+      }
     })
     const sysInfo = wx.getSystemInfoSync();
-    const self = this;
-    setTimeout(function(){
-      self.setData({
-        initialLoad: true,
-        sentRSVP: app.globalData.sentRSVP,
-      })
-    }, 5000);
+    
+    
+    let timerId = setInterval(function() {
+      if (app.globalData.sentRSVP != null && self.data.enLoaded && self.data.zhLoaded) {
+        setTimeout(function(){
+          self.setData({
+            initialLoad: true,
+            sentRSVP: app.globalData.sentRSVP,
+          });
+          clearInterval(timerId);
+        }, 2000);
+      }
+    }, 2000)
+
+    while(true) {
+      if (app.globalData.sentRSVP != null && this.data.enLoaded && this.data.zhLoaded) {
+        setTimeout(function(){
+          self.setData({
+            initialLoad: true,
+            sentRSVP: app.globalData.sentRSVP,
+          })
+        }, 5000);
+      } else {
+
+      }
+      break;
+    }
 
     if (sysInfo.language === 'en') {
       this.setData({
@@ -111,7 +147,7 @@ Page({
         oppositeLang: '中文',
       });  
     }
-
+    
     this.setData({
       barHeight: sysInfo.statusBarHeight,
       windowHeight: sysInfo.windowHeight,

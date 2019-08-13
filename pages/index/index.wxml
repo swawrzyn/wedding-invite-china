@@ -1,4 +1,4 @@
-<view class="page">
+<view class="page {{oppositeLang === 'EN' ? 'lang-zh' : 'lang-en'}}">
   <view class="nav" style="height: {{barHeight}}px"></view>
   <view class="lang" style="margin-top: {{barHeight}}px">
     <view class="button" bindtap="changeLang">{{oppositeLang}}</view>
@@ -6,9 +6,9 @@
   <scroll-view class="container" scroll-with-animation scroll-y="{{isScroll}}" enable-flex="true" ontouchstart="setInitPos" ontouchend="scrollTo" style="height: {{containerHeight}}px" scroll-into-view="{{toSect}}">
     <view id="one" class="sect one" style="height: {{containerHeight}}px">
     <view class="video-container">
-      <video src="https://cloud-minapp-29654.cloud.ifanrusercontent.com/1hxBHxSae1L8ei7X.mp4" autoplay loop
+      <video src="https://cloud-minapp-29654.cloud.ifanrusercontent.com/1hxRdvVq8Byz0FHG.m4v" autoplay loop
       controls="{{false}}"></video>
-      <view class="content {{initialLoad ? 'loaded': 'loading'}}">
+      <view class="content {{initialLoad ? 'loaded': 'loading'}} {{toSect === 'one' && initialLoad ? 'appear' : 'disappear'}}">
         <view class="top-text">{{currentLanguage.topText}}</view>
         <view class="main-names">
           <view class="rui">{{currentLanguage.rui}}</view>
@@ -31,15 +31,19 @@
     </view>
     
     </view>
-    <view id="two" class="sect two" style="height: {{containerHeight}}px; background-image: url('https://cloud-minapp-29654.cloud.ifanrusercontent.com/9.jpg')">
-      <view class="content">
+    <view id="two" class="sect two" style="height: {{containerHeight}}px; background-image: url('https://cloud-minapp-29654.cloud.ifanrusercontent.com/1hxSN5oINjcOspNo.jpg')">
+      <view class="content {{toSect === 'two' ? 'appear' : 'disappear'}}">
         <view class="para">
           <view class="title">{{currentLanguage.detailsTitle}}</view>
             <text>{{currentLanguage.detailsPara}}</text>
         </view>
         <view class="para">
           <view class="title">{{currentLanguage.directions}}</view>
-          <image class="map" src="img/map.jpg" bindtap="toMap" />
+          <view class="map" bindtap="toMap">
+            <view class="overlay"></view>
+            <image src="img/map.jpg" />
+          </view>
+          
         </view>
       </view>
       <view class="arrow bounce {{initialLoad ? 'loaded' : 'loading'}}" bindtap="nextSect">
@@ -48,7 +52,7 @@
     </view>
     <view id="three" class="sect three" style="height: {{containerHeight}}px; background-image: url(https://cloud-minapp-29654.cloud.ifanrusercontent.com/3.jpg)">
       <block wx:if="{{!sentRSVP}}">
-        <view wx:if="!sentRSVP" class="content rsvp">
+        <view wx:if="!sentRSVP" class="content rsvp {{toSect === 'three' ? 'appear' : 'disappear'}}">
           <view class="rsvp-title-group">
             <view class="rsvp-title">{{currentLanguage.rsvpTitle}}</view>
             <view class="rsvp-subtitle">{{currentLanguage.rsvpSubtitle}}</view>
@@ -85,7 +89,7 @@
         </view>
       </block>
       <block wx:else>
-        <view class="content rsvp">
+        <view class="content rsvp {{toSect === 'three' ? 'appear' : 'disappear'}}">
           <view class="rsvp-sent">
             <text class="title">{{currentLanguage.rsvpSent1}}</text>
             <text class="text">{{currentLanguage.rsvpSent2}}</text>

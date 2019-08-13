@@ -1,8 +1,14 @@
 .page {
   overflow: hidden;
   position: relative;
+}
+
+.lang-en {
   font-family: 'Custom EN', serif;
-  
+}
+
+.lang-zh {
+  font-family: 'Custom ZH', serif;
 }
 .container {
   position: relative;
@@ -95,7 +101,7 @@ svg {
 .video-container video {
   left: 50%;
   min-height: 100%;
-  width: 400vw;
+  width: 160vw;
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -113,9 +119,9 @@ svg {
   margin: 0 auto;
   width: 80vw;
   height: 70vh;
-  background: rgba(253, 245, 232, 0.85);
-  border-radius: 8rpx;
-  color: rgba(0, 0, 0, 0.8);
+  /* background: rgba(253, 245, 232, 0.85); */
+  border-radius: 5rpx;
+  color: black;
   z-index: 10;
   opacity: 1;
   border: 1rpx solid rgba(0, 0, 0, 0.8);
@@ -147,6 +153,16 @@ svg {
   flex-direction: column;
   /* text-transform: uppercase;
   font-weight: bold; */
+}
+
+.content.disappear {
+  opacity: 0;
+  transition: opacity 0.25s ease-out;
+}
+
+.content.appear {
+  opacity: 1;
+  transition: opacity 0.25s ease-in;
 }
 
 .main-names .and {
@@ -195,20 +211,47 @@ svg {
 
 .para .title {
   text-transform: uppercase;
-  font-weight: bold;
+  /* font-weight: bold; */
   letter-spacing: 2rpx;
+  font-size: 56rpx;
+  margin-bottom: 10rpx;
 }
 
 .para text {
   padding: 10rpx;
   text-align: center;
+  margin-bottom: 20rpx;
 }
 
 .para .map {
-  margin-top: 20rpx;
-  width: 400rpx;
-  height: 400rpx;
+  margin-top: 10rpx;
+  position: relative;
+  width: 500rpx;
+  height: 500rpx;
   border: 2rpx solid rgba(0, 0, 0, 0.25);
+  border-radius: 5rpx;
+  box-shadow: 0px 4rpx 22rpx -2rpx rgba(0,0,0,0.33);
+}
+
+.para .map .overlay {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.1);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  opacity: 0;
+}
+
+.para .map .overlay:active {
+  opacity: 1;
+  transition: opacity 0.1s ease;
+}
+
+.para .map image {
+  width: 100%;
+  height: 100%;
 }
 
 .content.rsvp {
