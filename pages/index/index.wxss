@@ -135,9 +135,6 @@
   /* font-weight: bold; */
 }
 
-.lang-zh .top-text {
-}
-
 .content .name-subtitle {
   font-size: 28rpx;
   font-style: italic;
@@ -288,9 +285,6 @@
 .para .map-sub {
   font-size: 24rpx;
   margin-top: 15rpx;
-}
-
-.lang-zh .para .map-sub {
 }
 
 .content.rsvp {
