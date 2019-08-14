@@ -36,7 +36,7 @@
     
     </view>
     <view id="two" class="sect two" style="height: {{containerHeight}}px; background-image: url('https://cloud-minapp-29654.cloud.ifanrusercontent.com/1hxXSx4J42OxgPZE.jpg')">
-      <view class="content {{toSect === 'two' ? 'appear' : 'disappear'}}">
+      <view class="content details {{toSect === 'two' ? 'appear' : 'disappear'}}">
         <view class="para">
           <!-- <view wx:if="{{oppositeLang === '中文'}}" class="title">{{currentLanguage.detailsTitle}}</view> -->
             <text>{{currentLanguage.detailsPara}}</text>
@@ -73,11 +73,11 @@
         <view wx:if="!sentRSVP" class="content rsvp {{toSect === 'three' ? 'appear' : 'disappear'}}">
           <view class="rsvp-title-group">
             <view class="rsvp-title">{{currentLanguage.rsvpTitle}}</view>
-            <view class="rsvp-subtitle">{{currentLanguage.rsvpSubtitle}}</view>
           </view>
           <view class="form-block">
             <view class="text-input-group">
-              <input class="text-input form-item" type="text" placeholder="{{currentLanguage.rsvpYourName}}" data-input="mainName" bindinput="bindInput" />
+              <view class="radio-title">{{currentLanguage.rsvpYourName}}</view>
+              <input class="text-input form-item" type="text" placeholder="" data-input="mainName" bindinput="bindInput" />
               <view class="form-error {{mainNameError ? '' : 'hidden'}}">{{currentLanguage.mainNameError}}</view>
             </view>
             
@@ -98,7 +98,8 @@
               <view class="form-error {{guestChoiceError ? '' : 'hidden'}}">{{currentLanguage.radioError}}</view>
             </radio-group>
             <view class="text-input-group">
-              <input class="text-input form-item {{guest && attending ? '' : 'hidden'}}" type="number" placeholder="{{currentLanguage.rsvpGuestNumber}}" data-input="guestNumber" bindinput="bindInput" />
+              <view class="radio-title {{guest && attending ? '' : 'hidden'}}">{{currentLanguage.rsvpGuestNumber}}</view>
+              <input class="text-input form-item {{guest && attending ? '' : 'hidden'}}" type="number" placeholder="" data-input="guestNumber" bindinput="bindInput" />
               <view class="form-error {{guestNumberError ? '' : 'hidden'}}">{{currentLanguage.guestNumberError}}</view>
             </view>
           </view>

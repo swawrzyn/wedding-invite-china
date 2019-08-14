@@ -10,6 +10,7 @@
 .lang-zh {
   font-family: 'HeiTi', serif,
 }
+
 .container {
   position: relative;
   scroll-behavior: smooth;
@@ -147,6 +148,7 @@
 }
 
 .lang-zh .name-subtitle {
+  font-family: 'Custom ZH', serif;
   font-style: normal;
   font-size: 46rpx;
   /* padding: 25rpx; */
@@ -164,7 +166,8 @@
 }
 
 .lang-zh .main-names {
-  font-size: 64rpx;
+  font-family: 'Custom ZH', serif;
+  font-size: 102rpx;
   font-weight: bold;
 }
 
@@ -200,6 +203,10 @@
   /* font-weight: lighter; */
 }
 
+.lang-zh .content .datetime-location-block {
+  font-size: 24rpx;
+}
+
 .content .datetime-location-block view {
   margin-top: 8rpx;
 }
@@ -211,6 +218,10 @@
 .loaded {
   opacity: 1;
   transition: opacity 1s ease-in;
+}
+
+.content.details {
+  padding: 25rpx;
 }
 
 .para {
@@ -238,7 +249,7 @@
 
 .lang-zh .para text {
   text-align: left;
-  text-indent: 60rpx;
+  text-indent: 65rpx;
   padding-top: 121rpx;
   /* font-size: 46rpx; */
 }
@@ -284,6 +295,7 @@
 
 .content.rsvp {
   justify-content: space-around;
+  padding: 25rpx;
 }
 
 .content.rsvp .rsvp-title-group {

@@ -44,9 +44,9 @@ const texts = {
   },
   zh: {
     topText: '',
-    rui: '李锐与史大方',
+    rui: '李锐',
     and: '',
-    stefan: '',
+    stefan: '史大方',
     nameSubtitle2: '携家人',
     nameSubtitle: '诚挚邀请您出席我们的婚宴',
     date: '2019年9月28日星期六晚上6点',
@@ -59,13 +59,12 @@ const texts = {
     directions: '前往路线',
     rsvpTitle: '请确认您的莅临',
     rsvpSubtitle: '填写下方空格',
-    rsvpName: '姓名',
+    rsvpYourName: '请填写您的姓名',
     rsvpQuestion: '您会出席吗？',
     rsvpYes: '会',
     rsvpNo: '不会',
     rsvpGuestRadio: '您会携家人出席吗？',
-    rsvpGuestNumber: 'How many people?',
-    rsvpName: '请告诉我们与您同往的家人人数',
+    rsvpGuestNumber: '您将携带几位家人与您同往？',
     rsvpSubmit: '提交',
     mainNameError: '请填写您的姓名',
     radioError: '请选择一个适合的选项',
@@ -123,20 +122,20 @@ Page({
         });
       }
     })
-    // wx.loadFontFace({
-    //   family: 'Custom ZH',
-    //   source: 'url("https://cloud-minapp-29654.cloud.ifanrusercontent.com/1hxSYaIgdn7yWKDq.ttf")',
-    //   complete() {
-    //     self.setData({
-    //       zhLoaded: true,
-    //     });
-    //   }
-    // })
+    wx.loadFontFace({
+      family: 'Custom ZH',
+      source: 'url("https://cloud-minapp-29654.cloud.ifanrusercontent.com/1hxSYaIgdn7yWKDq.ttf")',
+      complete() {
+        self.setData({
+          zhLoaded: true,
+        });
+      }
+    })
     const sysInfo = wx.getSystemInfoSync();
     
     
     let timerId = setInterval(function() {
-      if (app.globalData.sentRSVP != null && self.data.enLoaded) {
+      if (app.globalData.sentRSVP != null && self.data.enLoaded && self.data.zhLoaded) {
         setTimeout(function(){
           self.setData({
             initialLoad: true,
