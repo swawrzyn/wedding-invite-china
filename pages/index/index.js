@@ -24,55 +24,64 @@ const texts = {
     rsvpYes: 'Yes',
     rsvpNo: 'No',
     rsvpGuestRadio: 'Will you be bringing someone?',
-    rsvpGuestName: 'What is their name?',
+    rsvpGuestNumber: 'How many people?',
     rsvpSubmit: 'Submit',
     mainNameError: 'Please enter your name',
     radioError: 'Please select an option',
-    guestNameError: "Please enter your guest's name",
-    rsvpSent1: 'Congrats!',
-    rsvpSent2: 'Your RSVP has been sent successfully!',
-    rsvpSent3: 'See you soon!',
+    guestNumberError: "Please enter the number of guests",
+    rsvpSentHappy1: 'Congratulations!',
+    rsvpSentHappy2: 'Your RSVP has been sent successfully!',
+    rsvpSentHappy3: 'See you soon!',
+    rsvpSentSad2: 'Your RSVP has been sent successfully.',
+    rsvpSentSad3: "Sorry you can't come, we'll talk to you soon!",
     errorText1: "We're sorry, there was a server error.",
     errorText2: "Please call to give your RSVP or try again later.",
     callRui: 'Call Rui',
     callStefan: 'Call Stefan',
     clickMap: 'Click map for directions',
+    loading: 'Loading',
+    shareMessage: 'An invitation...',
   },
   zh: {
-    topText: 'together with their families',
-    rui: '李锐',
-    and: '&',
-    stefan: 'Stefan',
-    nameSubtitle: 'joyfully invite you to their wedding dinner',
-    date: 'Saturday, September 28th, 2019',
-    time: "6 o'clock in the evening",
-    locationName: 'The Riveira Restaurant',
-    address1: '505 Zhongshan Dong Er Road,',
-    address2: 'Huangpu District, Shanghai',
-    detailsTitle: 'Details',
-    detailsPara: "We would like to invite you for a small dinner at the Rivera Restaurant to celebrate our wedding. It's an occation for family and friends to come together and have a few laughs, some drinks and good food.",
-    directions: 'Directions',
-    rsvpTitle: 'RSVP',
-    rsvpSubtitle: 'Please fill in the form below',
-    rsvpName: 'Name',
-    rsvpQuestion: 'Will you be attending?',
-    rsvpYes: 'Yes',
-    rsvpNo: 'No',
-    rsvpGuestRadio: 'Will you be bringing someone?',
-    rsvpName: 'What is their name?',
-    rsvpSubmit: 'Submit',
-    mainNameError: 'Please enter your name',
-    radioError: 'Please select an option',
-    guestNameError: "Please enter your guest's name",
-    rsvpSent: 'Congrats, your RSVP has been sent! See you soon!',
-    rsvpSent1: 'Congrats!',
-    rsvpSent2: 'Your RSVP has been sent successfully!',
-    rsvpSent3: 'See you soon!',
-    errorText1: "We're sorry, there was a server error.",
-    errorText2: "Please call to give your RSVP or try again later.",
-    callRui: 'Call Rui',
-    callStefan: 'Call Stefan',
-    clickMap: 'Click map for directions',
+    topText: '',
+    rui: '李锐与史大方',
+    and: '',
+    stefan: '',
+    nameSubtitle2: '携家人',
+    nameSubtitle: '诚挚邀请您出席我们的婚宴',
+    date: '2019年9月28日星期六晚上6点',
+    time: "",
+    locationName: '',
+    address1: '上海市黄浦区中山东二路505号松鹤楼',
+    address2: '',
+    detailsTitle: '邀请函',
+    detailsPara: "我们诚挚邀请您与我们共享这个重要时刻，与最亲密的家人和朋友一起见证我们的幸福结合。",
+    directions: '前往路线',
+    rsvpTitle: '请确认您的莅临',
+    rsvpSubtitle: '填写下方空格',
+    rsvpName: '姓名',
+    rsvpQuestion: '您会出席吗？',
+    rsvpYes: '会',
+    rsvpNo: '不会',
+    rsvpGuestRadio: '您会携家人出席吗？',
+    rsvpGuestNumber: 'How many people?',
+    rsvpName: '请告诉我们与您同往的家人人数',
+    rsvpSubmit: '提交',
+    mainNameError: '请填写您的姓名',
+    radioError: '请选择一个适合的选项',
+    guestNumberError: "请填写与您同往的家人人数",
+    rsvpSentHappy1: '谢谢您',
+    rsvpSentHappy2: '您已成功确认出席我们的婚礼！',
+    rsvpSentHappy3: '',
+    rsvpSentSad2: '谢谢您的回复！',
+    rsvpSentSad3: "我们再约！",
+    errorText1: "不好意思，服务器已经迫不及待得跑去松鹤楼了",
+    errorText2: "请给我们打个电话确认您的出席，或者稍后再试。",
+    callRui: '给李锐打个电话',
+    callStefan: '给史大方打个电话（英语四级以下慎点）',
+    clickMap: '点击地图查看路线',
+    loading: '正在加载',
+   
   }
 }
 
@@ -91,16 +100,16 @@ Page({
     mainName: '',
     attending: null,
     guest: null,
-    guestName: '',
+    guestNumber: null,
     submitDisabled: true,
     mainNameError: false,
     attendingError: false,
     guestChoiceError: false,
-    guestNameError: false,
+    guestNumberError: false,
     submitLoading: false,
     sentRSVP: false,
     enLoaded: false,
-    zhLoaded: false,
+    // zhLoaded: false,
     serverError: false,
   },
   onLoad: function () {
@@ -114,24 +123,25 @@ Page({
         });
       }
     })
-    wx.loadFontFace({
-      family: 'Custom ZH',
-      source: 'url("https://cloud-minapp-29654.cloud.ifanrusercontent.com/1hxSYaIgdn7yWKDq.ttf")',
-      complete() {
-        self.setData({
-          zhLoaded: true,
-        });
-      }
-    })
+    // wx.loadFontFace({
+    //   family: 'Custom ZH',
+    //   source: 'url("https://cloud-minapp-29654.cloud.ifanrusercontent.com/1hxSYaIgdn7yWKDq.ttf")',
+    //   complete() {
+    //     self.setData({
+    //       zhLoaded: true,
+    //     });
+    //   }
+    // })
     const sysInfo = wx.getSystemInfoSync();
     
     
     let timerId = setInterval(function() {
-      if (app.globalData.sentRSVP != null && self.data.enLoaded && self.data.zhLoaded) {
+      if (app.globalData.sentRSVP != null && self.data.enLoaded) {
         setTimeout(function(){
           self.setData({
             initialLoad: true,
             sentRSVP: app.globalData.sentRSVP,
+            attending: app.globalData.attending,
             serverError: app.globalData.error,
           });
           clearInterval(timerId);
@@ -154,8 +164,9 @@ Page({
   },
   onShareAppMessage: function () {
     return {
-      title: 'An invitation...',
-      path: 'pages/index/index'
+      title: this.data.currentLanguage.shareMessage,
+      path: 'pages/index/index',
+      imageUrl: 'https://cloud-minapp-29654.cloud.ifanrusercontent.com/1hxY8IVbf2eUCi2X.jpg',
     }
   },
   changeLang: function() {
@@ -236,11 +247,19 @@ Page({
         mainName: e.detail.value,
         mainNameError: false,
       });
-    } else if (e.target.dataset.input === 'guestName') {
-      this.setData({
-        guestName: e.detail.value,
-        guestNameError: false,
-      });
+    } else if (e.target.dataset.input === 'guestNumber') {
+      const value = Number(e.detail.value);
+      if (Number.isInteger(value)) {
+        this.setData({
+          guestNumber: value,
+          guestNumberError: false,
+        });
+      } else {
+        this.setData({
+          guestNumber: 0,
+          guestNumberError: false,
+        });
+      }
     }
   },
   radioChange: function(e) {
@@ -265,7 +284,7 @@ Page({
       this.setData({
         guest: false,
         guestChoiceError: false,
-        guestNameError: false,
+        guestNumberError: false,
       });
     }
   },
@@ -297,18 +316,19 @@ Page({
         guestChoiceError: false,
       })
     }
-    if (this.data.guest && this.data.guestName.trim() === '') {
+    if (this.data.guest && this.data.guestNumber === 0) {
       this.setData({
-        guestNameError: true,
+        guestNumberError: true,
       })
     } else {
       this.setData({
-        guestNameError: false,
+        guestNumberError: false,
       })
     }
 
-    if (!this.data.mainNameError && !this.data.attendingError && !this.data.guestChoiceError && !this.data.guestNameError) {
+    if (!this.data.mainNameError && !this.data.attendingError && !this.data.guestChoiceError && !this.data.guestNumberError) {
       wx.showLoading({
+        title: this.data.currentLanguage.loading,
         mask: true,
       });
       let rsvpTable = new wx.BaaS.TableObject('rsvp');
@@ -321,15 +341,18 @@ Page({
       }
 
       if (this.data.guest) {
-        payload.guestName = this.data.guestName;
+        payload.guestNumber = this.data.guestNumber;
       }
       newRSVP.set(payload);
 
+      const self = this;
       newRSVP.save().then((res) => {
-        this.setData({
-          sentRSVP: true,
-        });
-        wx.hideLoading();
+        setTimeout(function(){
+          self.setData({
+            sentRSVP: true,
+          });
+          wx.hideLoading();
+        }, 1500);
       }, (err) => {
         this.setData({
           serverError: true,
@@ -347,7 +370,7 @@ Page({
   },
   callRui: function() {
     wx.makePhoneCall({
-      phoneNumber: '18616286042',
+      phoneNumber: '13524947625',
     })
   },
   callStefan: function() {

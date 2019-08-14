@@ -15,8 +15,12 @@
           <view class="and">{{currentLanguage.and}}</view>
           <view class="stefan">{{currentLanguage.stefan}}</view>
         </view>
-        <view class="name-subtitle">{{currentLanguage.nameSubtitle}}</view>
-        <view class="divider"></view>
+        <view class="zh-name-sub" wx:if="{{oppositeLang === 'EN'}}">
+          <view class="name-subtitle">{{currentLanguage.nameSubtitle2}}</view>
+          <view class="name-subtitle">{{currentLanguage.nameSubtitle}}</view>
+        </view>
+        <view wx:else class="name-subtitle">{{currentLanguage.nameSubtitle}}</view>
+        <view wx:if="{{oppositeLang === '中文'}}" class="divider"></view>
         <view class="datetime-location-block">
           <view class="date">{{currentLanguage.date}}</view>
           <view class="time">{{currentLanguage.time}}</view>
@@ -31,19 +35,19 @@
     </view>
     
     </view>
-    <view id="two" class="sect two" style="height: {{containerHeight}}px; background-image: url('https://cloud-minapp-29654.cloud.ifanrusercontent.com/3.jpg')">
+    <view id="two" class="sect two" style="height: {{containerHeight}}px; background-image: url('https://cloud-minapp-29654.cloud.ifanrusercontent.com/1hxXSx4J42OxgPZE.jpg')">
       <view class="content {{toSect === 'two' ? 'appear' : 'disappear'}}">
         <view class="para">
-          <view class="title">{{currentLanguage.detailsTitle}}</view>
+          <!-- <view wx:if="{{oppositeLang === '中文'}}" class="title">{{currentLanguage.detailsTitle}}</view> -->
             <text>{{currentLanguage.detailsPara}}</text>
         </view>
         <view class="para">
-          <view class="title">{{currentLanguage.directions}}</view>
+          <!-- <view wx:if="{{oppositeLang === '中文'}}" class="title">{{currentLanguage.directions}}</view> -->
           <view class="map" bindtap="toMap">
             <view class="overlay"></view>
             <image src="img/map.jpg" />
           </view>
-          <view style="font-size: 24rpx; margin-top: 10rpx;">{{currentLanguage.clickMap}}</view>
+          <view class="map-sub">{{currentLanguage.clickMap}}</view>
           
         </view>
       </view>
@@ -51,7 +55,7 @@
         <image src="img/arrow-dark.png" />
       </view>
     </view>
-    <view id="three" class="sect three" style="height: {{containerHeight}}px; background-image: url('https://cloud-minapp-29654.cloud.ifanrusercontent.com/1hxXSx4J42OxgPZE.jpg')">
+    <view id="three" class="sect three" style="height: {{containerHeight}}px; background-image: url('https://cloud-minapp-29654.cloud.ifanrusercontent.com/3.jpg')">
       <block wx:if="{{serverError}}">
         <view class="content rsvp {{toSect === 'three' ? 'appear' : 'disappear'}}">
           <view class="rsvp-sent">
@@ -94,8 +98,8 @@
               <view class="form-error {{guestChoiceError ? '' : 'hidden'}}">{{currentLanguage.radioError}}</view>
             </radio-group>
             <view class="text-input-group">
-              <input class="text-input form-item {{guest && attending ? '' : 'hidden'}}" type="text" placeholder="{{currentLanguage.rsvpGuestName}}" data-input="guestName" bindinput="bindInput" />
-              <view class="form-error {{guestNameError ? '' : 'hidden'}}">{{currentLanguage.guestNameError}}</view>
+              <input class="text-input form-item {{guest && attending ? '' : 'hidden'}}" type="number" placeholder="{{currentLanguage.rsvpGuestNumber}}" data-input="guestNumber" bindinput="bindInput" />
+              <view class="form-error {{guestNumberError ? '' : 'hidden'}}">{{currentLanguage.guestNumberError}}</view>
             </view>
           </view>
           <!-- disabled="{{mainName === '' || attending === null || (guest === null || (guest && guestName === ''))}}" -->
@@ -105,10 +109,10 @@
       <block wx:else>
         <view class="content rsvp {{toSect === 'three' ? 'appear' : 'disappear'}}">
           <view class="rsvp-sent">
-            <text class="title">{{currentLanguage.rsvpSent1}}</text>
-            <text class="text">{{currentLanguage.rsvpSent2}}</text>
-            <text class="subtitle">{{currentLanguage.rsvpSent3}}</text>
-            </view>
+            <text class="title">{{attending ? currentLanguage.rsvpSentHappy1 : '' }}</text>
+            <text class="text">{{ attending ? currentLanguage.rsvpSentHappy2 : currentLanguage.rsvpSentSad2 }}</text>
+            <text class="subtitle">{{ attending ? currentLanguage.rsvpSentHappy3 : currentLanguage.rsvpSentSad3 }}</text>
+          </view>
         </view>
       </block>
     </view>

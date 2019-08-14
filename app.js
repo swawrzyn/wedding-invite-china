@@ -16,6 +16,7 @@ App({
       Rsvp.setQuery(query).find().then(res => {
         if (res.data.objects.length > 0) {
           this.globalData.sentRSVP = true;
+          this.globalData.attending = res.data.objects[0].attending;
         } else {
           this.globalData.sentRSVP = false;
         }
@@ -32,6 +33,7 @@ App({
   globalData: {
     userInfo: null,
     sentRSVP: null,
+    attending: null,
     error: false,
   }
 })

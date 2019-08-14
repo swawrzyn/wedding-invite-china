@@ -8,7 +8,6 @@
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "white"
   },
-  "sitemapLocation": "sitemap.json",
   "plugins": {
     "sdkPlugin": {
       "version": "2.3.0",
