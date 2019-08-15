@@ -30,7 +30,7 @@
         </view>
       </view>
       <view class="arrow bounce {{initialLoad ? 'loaded': 'loading'}}" bindtap="nextSect">
-        <image src="img/arrow-light.png" />
+        <image src="img/arrow-dark.png" />
       </view>
     </view>
     
