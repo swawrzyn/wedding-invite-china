@@ -168,16 +168,6 @@
   font-weight: bold;
 }
 
-.content.disappear {
-  opacity: 0;
-  transition: opacity 0.25s ease-out;
-}
-
-.content.appear {
-  opacity: 1;
-  transition: opacity 0.25s ease-in;
-}
-
 .main-names .and {
   font-size: 50rpx;
 }
@@ -208,6 +198,17 @@
   margin-top: 8rpx;
 }
 
+
+.content.disappear {
+  opacity: 0;
+  transition: opacity 0.25s ease-out;
+}
+
+.content.appear {
+  opacity: 1;
+  transition: opacity 0.25s ease-in;
+}
+
 .loading {
   opacity: 0;
 }
@@ -216,6 +217,7 @@
   opacity: 1;
   transition: opacity 1s ease-in;
 }
+
 
 .content.details {
   padding: 25rpx;

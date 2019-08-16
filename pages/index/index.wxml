@@ -6,9 +6,9 @@
   <scroll-view class="container" scroll-with-animation scroll-y="{{isScroll}}" enable-flex="true" ontouchstart="setInitPos" ontouchend="scrollTo" style="height: {{containerHeight}}px" scroll-into-view="{{toSect}}">
     <view id="one" class="sect one" style="height: {{containerHeight}}px">
     <view class="video-container">
-      <video src="https://cloud-minapp-29654.cloud.ifanrusercontent.com/1hxRdvVq8Byz0FHG.m4v" autoplay loop
-      controls="{{false}}"></video>
-      <view class="content {{initialLoad ? 'loaded': 'loading'}} {{toSect === 'one' && initialLoad ? 'appear' : 'disappear'}}">
+      <video id="bgVideo" src="https://cloud-minapp-29654.cloud.ifanrusercontent.com/1hxRdvVq8Byz0FHG.m4v" autoplay loop
+      controls="{{false}}" bindplay="videoLoaded"></video>
+      <view class="content {{initialLoad ? 'loaded': 'loading'}} {{toSect === 'one' && initialLoad ? appLoaded ? 'appear' : '' : 'disappear'}}">
         <view class="top-text">{{currentLanguage.topText}}</view>
         <view class="main-names">
           <view class="rui">{{currentLanguage.rui}}</view>

@@ -80,7 +80,7 @@ const texts = {
     callStefan: '给史大方打个电话（英语四级以下慎点）',
     clickMap: '点击地图查看路线',
     loading: '正在加载',
-   
+    shareMessage: '这真的是一封婚礼邀请函',
   }
 }
 
@@ -110,9 +110,12 @@ Page({
     enLoaded: false,
     // zhLoaded: false,
     serverError: false,
+    videoLoaded: false,
+    appLoaded: false,
   },
   onLoad: function () {
     const self = this;
+
     wx.loadFontFace({
       family: 'Custom EN',
       source: 'url("https://cloud-minapp-29654.cloud.ifanrusercontent.com/1hxBVd1wG2mv9lc6.ttf")',
@@ -135,7 +138,7 @@ Page({
     
     
     let timerId = setInterval(function() {
-      if (app.globalData.sentRSVP != null && self.data.enLoaded && self.data.zhLoaded) {
+      if (app.globalData.sentRSVP != null && self.data.enLoaded && self.data.zhLoaded && self.data.videoLoaded) {
         setTimeout(function(){
           self.setData({
             initialLoad: true,
@@ -181,6 +184,11 @@ Page({
       });
     }
   },
+  videoLoaded: function() {
+    this.setData({
+      videoLoaded: true,
+    })
+  },
   setInitPos: function (e) {
     this.setData({
       initTouch: e.touches[0].pageY,
@@ -195,6 +203,11 @@ Page({
       })
       if (wiggleRoom && this.data.initTouch > e.changedTouches[0].pageY) {
         if (currentPage >= 0 && currentPage < 2) {
+          if (currentPage === 0 && !this.appLoaded) {
+            this.setData({
+              appLoaded: true,
+            })
+          }
           this.setData({
             isScroll: true,
             currentPage: currentPage + 1,
